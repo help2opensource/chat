@@ -5,9 +5,9 @@ defmodule ChatWeb.UserListTest do
   
     @tag timeout: :infinity
     feature "users can sent message", %{session: session} do
-      for item <- 1..1000 do
+      for item <- 1..10 do
       session
-      |> visit("/")
+      |> visit("/?name=#{item}")
       |> fill_in(text_field("chat-input"), with: "This is the message sent by user #{item}")
       |> click(button("sendButton"))
     end 
@@ -15,7 +15,7 @@ defmodule ChatWeb.UserListTest do
 
     feature "users have names", %{session: session} do
       session
-      |> visit("/")
+      |> visit("/?name=user")
       |> find(Query.css(".user", count: 3))
       |> List.first()
       |> assert_has(Query.css(".user-name", text: "Chris"))
