@@ -38,3 +38,8 @@ config :phoenix, :plug_init_mode, :runtime
 #wallaby related settings
 config :wallaby, driver: Wallaby.Chrome # default
 config :wallaby, otp_app: :chat
+config :wallaby,
+  chromedriver: [
+    headless: false
+  ]
+ 
