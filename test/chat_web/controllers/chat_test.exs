@@ -5,7 +5,7 @@ defmodule ChatWeb.UserListTest do
   
     @tag timeout: :infinity
     feature "users can sent message", %{session: session} do
-      for item <- 1..10 do
+      for item <- 1..1000 do
       session
       |> visit("/?name=#{item}")
       |> fill_in(text_field("chat-input"), with: "This is the message sent by user #{item}")
