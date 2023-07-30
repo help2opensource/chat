@@ -666,7 +666,7 @@ defmodule ChatWeb.CoreComponents do
     for {^field, {msg, opts}} <- errors, do: translate_error({msg, opts})
   end
 
-  attr :meta, Flop.Meta, required: true
+attr :meta, Flop.Meta, required: true
 attr :id, :string, default: nil
 attr :on_change, :string, default: "update-filter"
 attr :on_reset, :string, default: "reset-filter"
