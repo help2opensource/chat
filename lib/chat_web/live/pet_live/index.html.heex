@@ -14,9 +14,27 @@
 />
 
 
-<Flop.Phoenix.table items={@streams.pets} meta={@meta} path={~p"/pets"}>
+<Flop.Phoenix.table items={@streams.pets} 
+ row_click={fn {_id, pet} -> JS.navigate(~p"/pets/#{pet}") end}
+ 
+
+meta={@meta} path={~p"/pets"}>
   <:col :let={{_, pet}} label="Name" field={:name}><%= pet.name %></:col>
   <:col :let={{_, pet}} label="Age" field={:age}><%= pet.age %></:col>
+  <:action :let={{_id, pet}}>
+    <div class="sr-only">
+      <.link navigate={~p"/pets/#{pet}"}>Show</.link>
+    </div>
+    <.link patch={~p"/pets/#{pet}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, pet}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: pet.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
 </Flop.Phoenix.table>
 
 
