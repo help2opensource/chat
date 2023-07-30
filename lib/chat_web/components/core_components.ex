@@ -683,7 +683,7 @@ def filter_form(%{meta: meta} = assigns) do
     phx-change={@on_change}
     phx-submit={@on_change}
   >
-    <.filter_fields :let={i} form={@form} fields={[:age, :name]}>
+    <.filter_fields :let={i} form={@form} fields={@fields}>
       <.input
         field={i.field}
         label={i.label}
