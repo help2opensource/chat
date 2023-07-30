@@ -3,7 +3,7 @@ defmodule ChatWeb.PetLive.Index do
 
   alias Chat.PetLive
   alias Chat.PetLive.Pet
-  import Phoenix.HTML.FormData
+
 
   @impl true
   def mount(_params, _session, socket) do

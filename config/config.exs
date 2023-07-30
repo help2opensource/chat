@@ -64,3 +64,7 @@ config :phoenix, :json_library, Jason
 import_config "#{config_env()}.exs"
 
 config :flop, repo: Chat.Repo, default_limit: 5
+
+config :flop_phoenix,
+  pagination: [opts: {ChatWeb.CoreComponents, :pagination_opts}],
+  table: [opts: {ChatWeb.CoreComponents, :table_opts}]
