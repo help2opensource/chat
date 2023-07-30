@@ -8,7 +8,17 @@
 </.header>
 
 <.filter_form
-  fields={[:name, :age]}
+ fields={[
+  name: [
+    label: "Name",
+    op: :ilike_and
+  ],
+   age: [
+    label: "Age"
+  ]
+]}
+
+
   meta={@meta}
   id="user-filter-form"
 />
