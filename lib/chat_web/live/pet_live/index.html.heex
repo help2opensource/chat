@@ -1,0 +1,34 @@
+<.header>
+  Listing Pets
+  <:actions>
+    <.link patch={~p"/pets/new"}>
+      <.button>New Pet</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.filter_form
+  fields={[:name, :age]}
+  meta={@meta}
+  id="user-filter-form"
+/>
+
+
+<Flop.Phoenix.table items={@streams.pets} meta={@meta} path={~p"/pets"}>
+  <:col :let={{_, pet}} label="Name" field={:name}><%= pet.name %></:col>
+  <:col :let={{_, pet}} label="Age" field={:age}><%= pet.age %></:col>
+</Flop.Phoenix.table>
+
+
+<Flop.Phoenix.pagination meta={@meta} path={~p"/pets"} />
+
+<.modal :if={@live_action in [:new, :edit]} id="pet-modal" show on_cancel={JS.patch(~p"/pets")}>
+  <.live_component
+    module={ChatWeb.PetLive.FormComponent}
+    id={@pet.id || :new}
+    title={@page_title}
+    action={@live_action}
+    pet={@pet}
+    patch={~p"/pets"}
+  />
+</.modal>

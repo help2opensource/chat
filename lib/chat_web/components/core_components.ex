@@ -18,6 +18,7 @@ defmodule ChatWeb.CoreComponents do
 
   alias Phoenix.LiveView.JS
   import ChatWeb.Gettext
+  import Flop.Phoenix
 
   @doc """
   Renders a modal.
@@ -448,6 +449,8 @@ defmodule ChatWeb.CoreComponents do
   attr :rows, :list, required: true
   attr :row_id, :any, default: nil, doc: "the function for generating the row id"
   attr :row_click, :any, default: nil, doc: "the function for handling phx-click on each row"
+  attr :col_click, :any, default: nil, doc: "the function for handling phx-click on each column"
+
 
   attr :row_item, :any,
     default: &Function.identity/1,
@@ -470,7 +473,7 @@ defmodule ChatWeb.CoreComponents do
       <table class="w-[40rem] mt-11 sm:w-full">
         <thead class="text-sm text-left leading-6 text-zinc-500">
           <tr>
-            <th :for={col <- @col} class="p-0 pr-6 pb-4 font-normal"><%= col[:label] %></th>
+            <th :for={col <- @col}  phx-click={@col_click && @col_click.(col)} class="p-0 pr-6 pb-4 font-normal"><%= col[:label] %></th>
             <th class="relative p-0 pb-4"><span class="sr-only"><%= gettext("Actions") %></span></th>
           </tr>
         </thead>
@@ -662,4 +665,39 @@ defmodule ChatWeb.CoreComponents do
   def translate_errors(errors, field) when is_list(errors) do
     for {^field, {msg, opts}} <- errors, do: translate_error({msg, opts})
   end
+
+  attr :meta, Flop.Meta, required: true
+attr :id, :string, default: nil
+attr :on_change, :string, default: "update-filter"
+attr :on_reset, :string, default: "reset-filter"
+attr :target, :string, default: nil
+
+def filter_form(%{meta: meta} = assigns) do
+  assigns = assign(assigns, form: Phoenix.Component.to_form(meta), meta: nil)
+
+  ~H"""
+  <.form
+    for={@form}
+    id={@id}
+    phx-target={@target}
+    phx-change={@on_change}
+    phx-submit={@on_change}
+  >
+    <.filter_fields :let={i} form={@form} fields={[:age, :name]}>
+      <.input
+        field={i.field}
+        label={i.label}
+        type={i.type}
+        phx-debounce={120}
+        {i.rest}
+      />
+    </.filter_fields>
+
+    <a href="#" class="button" phx-target={@target} phx-click={@on_reset}>
+      reset
+    </a>
+  </.form>
+  """
+end
+
 end
