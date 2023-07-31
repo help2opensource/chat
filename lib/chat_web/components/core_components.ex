@@ -732,10 +732,10 @@ def table_opts do
     tbody_attrs: [class: "border-separate border border-slate-500"],
     tbody_td_attrs: [class: "px-6 border-separate border border-slate-500"],
     tbody_tr_attrs: [class: "border-separate border border-slate-500"],
-    thead_attrs: [class: "px-6 border-separate border border-slate-500"],
-    th_wrapper_attrs: [class: "px-6 border-separate border border-slate-500"],
+    #thead_attrs: [class: "px-6 border-separate border border-slate-500"],
+    #th_wrapper_attrs: [class: "px-6 border-separate border border-slate-500"],
     thead_th_attrs: [class: "px-6 border-separate border border-slate-500"],
-    thead_tr_attrs: [class: "px-6 border-separate border border-slate-500"]
+    #thead_tr_attrs: [class: "px-6 border-separate border border-slate-500"]
   ]
 end
 
