@@ -694,7 +694,7 @@ def filter_form(%{meta: meta} = assigns) do
     </.filter_fields>
 
     <a href="#" class="button" phx-target={@target} phx-click={@on_reset}>
-      reset
+      &nbsp;
     </a>
   </.form>
   """
@@ -726,9 +726,16 @@ end
 def table_opts do
   [
     container: true,
-    container_attrs: [class: "table-container"],
+    container_attrs: [class: "container"],
     no_results_content: content_tag(:p, do: "Nothing found."),
-    table_attrs: [class: "table"]
+    table_attrs: [class: "border-separate border border-slate-500"],
+    tbody_attrs: [class: "border-separate border border-slate-500"],
+    tbody_td_attrs: [class: "px-6 border-separate border border-slate-500"],
+    tbody_tr_attrs: [class: "border-separate border border-slate-500"],
+    thead_attrs: [class: "px-6 border-separate border border-slate-500"],
+    th_wrapper_attrs: [class: "px-6 border-separate border border-slate-500"],
+    thead_th_attrs: [class: "px-6 border-separate border border-slate-500"],
+    thead_tr_attrs: [class: "px-6 border-separate border border-slate-500"]
   ]
 end
 
