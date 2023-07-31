@@ -703,24 +703,42 @@ end
 import Phoenix.HTML.Tag
 
 def pagination_opts do
-   [
-    ellipsis_attrs: [class: "ellipsis"],
-    ellipsis_content: "‥",
-    next_link_attrs: [class: "next"],
-    next_link_content: next_icon(),
-    page_links: {:ellipsis, 7},
-    pagination_link_aria_label: &"#{&1}ページ目へ",
-    previous_link_attrs: [class: "prev"],
-    previous_link_content: previous_icon()
+  [
+    current_link_attrs: [
+      class: "pagination-link text-red-500",
+      aria: [current: "page"]
+    ],
+    disabled_class: "hidden",
+    ellipsis_attrs: [class: "pagination-ellipsis"],
+    ellipsis_content: Phoenix.HTML.raw("&hellip;"),
+    next_link_attrs: [
+      aria: [label: "Go to next page"],
+      class: "pagination-next"
+    ],
+    next_link_content: "Next",
+    page_links: :all,
+    pagination_link_aria_label: &"Go to page #{&1}",
+    pagination_link_attrs: [class: "pagination-link"],
+    pagination_list_attrs: [class: "pagination-list"],
+    previous_link_attrs: [
+      aria: [label: "Go to previous page"],
+      class: "pagination-previous"
+    ],
+    previous_link_content: "Previous",
+    wrapper_attrs: [
+      class: "pagination",
+      role: "navigation",
+      aria: [label: "pagination"]
+    ]
   ]
 end
 
 defp next_icon do
-  tag :i, class: "fas fa-chevron-right"
+  tag :i, class: "fa fa-chevron-right"
 end
 
 defp previous_icon do
-  tag :i, class: "fas fa-chevron-left"
+  tag :i, class: "fa fa-chevron-left"
 end
 
 def table_opts do
