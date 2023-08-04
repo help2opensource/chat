@@ -671,6 +671,7 @@ attr :id, :string, default: nil
 attr :on_change, :string, default: "update-filter"
 attr :on_reset, :string, default: "reset-filter"
 attr :target, :string, default: nil
+attr :fields, :list, default: []
 
 def filter_form(%{meta: meta} = assigns) do
   assigns = assign(assigns, form: Phoenix.Component.to_form(meta), meta: nil)
@@ -733,6 +734,7 @@ def pagination_opts do
   ]
 end
 
+@doc """
 defp next_icon do
   tag :i, class: "fa fa-chevron-right"
 end
@@ -740,6 +742,7 @@ end
 defp previous_icon do
   tag :i, class: "fa fa-chevron-left"
 end
+"""
 
 def table_opts do
   [
