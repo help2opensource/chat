@@ -9,6 +9,7 @@ defmodule ChatWeb.PetLive.Index do
   def mount(_params, _session, socket) do
     {:ok, 
     socket
+    |> assign(:params, "")
     |> assign(:meta, %Flop.Meta{page_size: 10})
     |> stream(:pets, [])
   }
@@ -39,6 +40,7 @@ defmodule ChatWeb.PetLive.Index do
       {:ok, {pets, meta}} ->
            socket
            |> assign(:meta, meta)
+           |> assign(:params, params)
            |> stream(:pets, pets, reset: true)
     
         {:error, _meta} -> {:noreply, push_navigate(socket, to: ~p"/pets")}
