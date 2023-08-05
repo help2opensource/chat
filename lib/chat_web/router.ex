@@ -28,14 +28,14 @@ defmodule ChatWeb.Router do
   
     live "/messages/:id", MessageLive.Show, :show
     live "/messages/:id/show/edit", MessageLive.Show, :edit
-    
+
+live_session :auth, on_mount: [{ChatWeb.LiveAuth, :default}] do  
     live "/pets", PetLive.Index, :index
     live "/pets/new", PetLive.Index, :new
     live "/pets/:id/edit", PetLive.Index, :edit
-
     live "/pets/:id", PetLive.Show, :show
     live "/pets/:id/show/edit", PetLive.Show, :edit
-    
+end  
   end
 
   # Other scopes may use custom stacks.
