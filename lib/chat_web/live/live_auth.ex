@@ -18,6 +18,20 @@ defmodule ChatWeb.LiveAuth do
   
       end
     end
+
+    def on_mount(:admin, _, session, socket) do
+      socket = assign_current_user(socket, session)
+      case socket.assigns.current_user.email do
+        "admin@gmail.com" ->
+          {:cont, socket}
+          
+        _ ->
+          {:halt,
+            socket
+            |> put_flash(:error, "You have to Sign in to as Administrator to continue")
+            |> redirect(to: "/users/log_in")}
+      end
+    end
   
     defp assign_current_user(socket, session) do
       case session do
