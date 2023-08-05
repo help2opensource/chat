@@ -5,7 +5,7 @@ defmodule ChatWeb.LiveAuth do
     alias Chat.Users.User
     alias ChatWeb.Router.Helpers, as: Routes
   
-    def on_mount(:require_authenticated_user, _, session, socket) do
+    def on_mount(:default, _, session, socket) do
       socket = assign_current_user(socket, session)
       case socket.assigns.current_user do
         nil ->

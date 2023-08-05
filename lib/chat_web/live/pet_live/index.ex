@@ -4,10 +4,10 @@ defmodule ChatWeb.PetLive.Index do
   alias Chat.PetLive
   alias Chat.PetLive.Pet
 
-  on_mount {ChatWeb.LiveAuth, :require_authenticated_user}
+  #on_mount {ChatWeb.LiveAuth, :require_authenticated_user}
 
   @impl true
-  def mount(_params, %{"user_token" => user_token} = _sessio, socket) do
+  def mount(_params, _sessio, socket) do
      {:ok, 
     socket
     |> assign(:params, "")
