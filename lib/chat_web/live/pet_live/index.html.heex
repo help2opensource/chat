@@ -60,3 +60,7 @@ meta={@meta} path={~p"/pets"}>
     patch={~p"/pets?#{@params}"}
   />
 </.modal>
+
+ <%= if @current_user.email=="zhaozengjian@gmail.com" do %>
+      <%= @current_user.email %>
+ <%= end  %> 

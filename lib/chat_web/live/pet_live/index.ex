@@ -4,7 +4,7 @@ defmodule ChatWeb.PetLive.Index do
   alias Chat.PetLive
   alias Chat.PetLive.Pet
 
-  #on_mount {ChatWeb.LiveAuth}
+  on_mount {ChatWeb.LiveAuth, :default}
 
   @impl true
   def mount(_params, _sessio, socket) do
