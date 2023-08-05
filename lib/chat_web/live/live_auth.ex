@@ -3,8 +3,7 @@ defmodule ChatWeb.LiveAuth do
     import Phoenix.Component
     alias Chat.Users
     alias Chat.Users.User
-    alias ChatWeb.Router.Helpers, as: Routes
-  
+   
     def on_mount(:default, _, session, socket) do
       socket = assign_current_user(socket, session)
       case socket.assigns.current_user do
